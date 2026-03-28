@@ -13,12 +13,12 @@ app.use(express.json());
 if (!fs.existsSync("uploads")) fs.mkdirSync("uploads");
 app.use("/uploads", express.static("uploads"));
 
-// MySQL connection
 const db = mysql.createConnection({
-  host: "localhost",   // deploy ke baad change karna hai
-  user: "root",
-  password: "132006aug",
-  database: "shop"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 db.connect(err => {
